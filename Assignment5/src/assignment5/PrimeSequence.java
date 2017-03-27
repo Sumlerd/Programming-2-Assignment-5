@@ -37,21 +37,52 @@
 
 package assignment5;
 
-/**
- *
- * @author Dylan
- */
 public class PrimeSequence implements Sequence {
    
-   private int n;
+   private final int BASE_VALUE = 2;   //lowest possible used to determine prime
+   private int current;
+   
+   
+   PrimeSequence(int SequenceValue){
+      current = SequenceValue;
+   }
    
    /**
     * 
     * @return 
     */
    public int next(){
-      n++;
-      return n*n;
+      boolean undetermined = true;
+      int divisor = BASE_VALUE;
+      
+      do{
+         if((divisor * BASE_VALUE) > current){
+            undetermined = false;
+         }
+         else if((current % divisor) == 0){
+            current++;
+            divisor = BASE_VALUE;
+         }
+         else
+            divisor++;
+      }while(undetermined);
+      
+      return current;
+   }
+   
+   /**
+    * Retrieves the current value of the sequence.
+    * @return the current value of the sequence
+    */
+   public int getCurrent(){
+      return current;
+   }
+   
+   /**
+    * Set the current value of the sequence.
+    */
+   public void setCurrent(int newCurrent){
+      current = newCurrent;
    }
    
    
