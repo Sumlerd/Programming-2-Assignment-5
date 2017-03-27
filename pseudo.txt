@@ -1,1 +1,21 @@
-For psuedoCode
+PrimeSequence class
+
+PrimeSequence constructor
+   take one (two?) int parameters to determine where to start the sequence
+
+
+next()
+   perform continuous modulus operations until the result the divisor is greater than half the current number (meaning it's prime). If the operation returns zero, exit the loop (not prime)
+      Check that someNumber  * 2 is not greater than the current value (if so, exit loop)
+      If the current value % someNumber is not 0, increase someNumber
+   update the current number of the sequence
+   return the current number of the sequence
+
+getNumber()
+   get the current value of the sequence
+
+setNumber()
+   set the value that the sequence should begin at
+
+clearSequence()
+   clear the current number of the sequence 

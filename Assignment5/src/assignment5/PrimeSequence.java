@@ -41,9 +41,18 @@ package assignment5;
  *
  * @author Dylan
  */
-public class PrimeSequence {
+public class PrimeSequence implements Sequence {
    
+   private int n;
    
+   /**
+    * 
+    * @return 
+    */
+   public int next(){
+      n++;
+      return n*n;
+   }
    
    
 }
