@@ -2,20 +2,20 @@
  |   Source code:  PrimeSequence.java
  |        Author:  Dylan Sumler
  |    Student ID:  3538998  
- |    Assignment:  Assignment #4 - Better Rectangle
+ |    Assignment:  Assignment #5 - Prime Sequencer
  |  
  |        Course:  COP 3337 (Programming II) 
  |       Section:  U02  
  |    Instructor:  William Feild  
- |      Due Date:  7 March 2017, class time
+ |      Due Date:  28 March 2017, class time
  |
  |	I hereby certify that this collective work is my own
  |	and none of it is the work of any other person or entity.
  |	______________________________________ [Signature]
  |  
  |      Language:  Java 
- |   Compile/Run:  javac BetterRectangle.java BRectTester.java
- |                 java BRectTester
+ |   Compile/Run:  
+ |                 
  | 
  |  +-----------------------------------------------------------------------  
  |  
