@@ -41,6 +41,8 @@ package assignment5;
 public class SequenceDemo {
    
    public static void main(String[] args){
+      PrimeSequence prime = new PrimeSequence(7);
+      
       
    }
    

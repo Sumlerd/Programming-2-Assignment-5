@@ -48,12 +48,19 @@ public class PrimeSequence implements Sequence {
    }
    
    /**
-    * 
-    * @return 
+    * Determines the next prime number after the current prime number.
+    * If the divisor multiplied by two is greater than the current number then
+    * it is a prime number.
+    * Otherwise, if the current number % the divisor is zero, increment the 
+    * current number and reset the divisor because it is not prime.
+    * Otherwise, increment the divisor until one of the other cases is true.
+    * @return the next prime number.
     */
+   @Override
    public int next(){
       boolean undetermined = true;
       int divisor = BASE_VALUE;
+      current++;
       
       do{
          if((divisor * BASE_VALUE) > current){
@@ -80,6 +87,7 @@ public class PrimeSequence implements Sequence {
    
    /**
     * Set the current value of the sequence.
+    * @param newCurrent 
     */
    public void setCurrent(int newCurrent){
       current = newCurrent;

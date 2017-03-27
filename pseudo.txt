@@ -5,11 +5,12 @@ PrimeSequence constructor
 
 
 next()
-   perform continuous modulus operations until the result the divisor is greater than half the current number (meaning it's prime). If the operation returns zero, exit the loop (not prime)
+   increment the current value
+   perform continuous modulus operations until the result the divisor is greater than half the current number (meaning it's prime). 
       Check that someNumber  * 2 is not greater than the current value (if so, exit loop)
-      If the current value % someNumber is not 0, increase someNumber
-   update the current number of the sequence
-   return the current number of the sequence
+      If the current value % someNumber is 0, current value is not prime so increase it and reset the divisor
+      Otherwise, increment the divisor
+   return the current value
 
 getNumber()
    get the current value of the sequence
