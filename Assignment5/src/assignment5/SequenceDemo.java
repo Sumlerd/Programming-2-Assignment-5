@@ -109,14 +109,22 @@ public class SequenceDemo {
       int size = primeArray.length;
       int root = (int)Math.sqrt(size);
 	   int square = root * root;
+      int excess = 0;
+      int excess2= 0;
       
       PrimeSequence prime = new PrimeSequence(size - 1);
       
 	   int i, j;
       int k = 0;
-	  
+      
+      
+      if(root > 10){
+         excess = root - 10;
+         root = 10;
+      }
+      
 	   if(square == size){
-         for(i = 0; i < root; i++){
+         for(i = 0; i < (root + excess); i++){
             System.out.println();
             for(j = 0; j < root; j++){
                System.out.print(primeArray[k] + " ");
@@ -124,24 +132,37 @@ public class SequenceDemo {
             }
          }
       }
-      else if(prime.next() == size){
+      else{
          int remainder = size - square;
-         for(i = 0; i < remainder; i++){
-            System.out.print(primeArray[i] + " ");
+         if(remainder > 10){
+            for(i = 0; i < (remainder % 10); i++){
+               System.out.print(primeArray[i] + " ");
+            }
+            for(i = 0; i < (remainder/10); i++){
+               System.out.println();
+               for(j = 0; j < 10; j++){
+                  System.out.print(primeArray[j + (remainder % 10)] + " ");
+               }
+            }
          }
-         
+		   else{
+            for(i = 0; i < remainder; i++){
+               System.out.print(primeArray[i] + " ");
+            }
+		   }
+		 
          if(remainder == 1)
             k++;
          else
-            k+= remainder - 1;
-         for(i = 0; i < root; i++){
+            k+= remainder;
+         for(i = 0; i < (root + excess); i++){
             System.out.println();
             for(j = 0; j < root; j++){
                System.out.print(primeArray[k] + " ");
                k++;
             }
          }
-      }              
+      }
    }
      
 }
