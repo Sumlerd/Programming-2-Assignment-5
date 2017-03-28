@@ -1,5 +1,5 @@
 /*==========================================================================  
- |   Source code:  PrimeSequence.java
+ |   Source code:  SequenceDemo.java
  |        Author:  Dylan Sumler
  |    Student ID:  3538998  
  |    Assignment:  Assignment #5 - Prime Sequencer
@@ -14,22 +14,41 @@
  |	______________________________________ [Signature]
  |  
  |      Language:  Java 
- |   Compile/Run:  
+ |   Compile/Run:  javac Sequence.java PrimeSequence.java SequenceDemo.java
+ |                 java SequenceDemo int x int y
+ |                 Where x is the number to start the prime sequence from
+ |                 and y is the number of prime numbers to output.
  |                 
  | 
  |  +-----------------------------------------------------------------------  
  |  
- |  Description:  
+ |  Description:  This class tests the functionality of the PrimeSequence
+ |                class by generating a sequence of prime numbers based off
+ |                user input and outputing the sequence as table. Additionally,
+ |                a histogram representing the number of occurrences of the last
+ |                digit in each prime number will be displayed.
  |
- |        Input:  
+ |        Input:  Two command line arguments provided by the user. The first
+ |                argument indicates where the prime sequence should start, 
+ |                and the second argument indicates how many prime numbers
+ |                should be generated.
  |  
- |       Output:  
+ |       Output:  Will output a table representation of the generated prime
+ |                sequence and a histogram representing the number of 
+                  occurrences the last digit in each prime number.
  |  
- |      Process:  
+ |      Process:  The program will execute four high-level methods in main
+ |                which will validate user input, generate/print the 
+ |                sequence, and generate/print the histogram.
  |
  |                
  |  
- |   Required Features Not Included: All required features are included.
+ |   Required Features Not Included: The histogram does not provide the
+ |                exact number of occurrences of the final digit in each
+ |                prime number. An approximation is generated represented by
+ |                '*' and the approximation is always rounded down,
+ |                i.e 29 occurrences will be represented as ' * * ' for a
+ |                scale of 10.
  |                 
  |  
  |   Known Bugs: None; the program operates as intended. 
@@ -45,12 +64,14 @@ public class SequenceDemo {
    
    //1 + the max possible value for rightmost digit in a given number
    private static final int MAX_DIGIT = 10; 
-   private static final int LOG_SCALE = 10;  //used to scale histogram
+   private static final int DEFAULT_SCALE = 10;  //used to scale histogram
    
    public static void main(String[] args){
-      if(isValid(args)){
-		   generateTable(generateSequence(args));
-         generateHistogram(generateSequence(args));
+      
+      if(isValid(args)){  
+         int primeSequence[] = generateSequence(args);
+		   generateTable(primeSequence);    
+         generateHistogram(primeSequence);
       }  
    }
    
@@ -58,8 +79,8 @@ public class SequenceDemo {
     * Validate command line arguments to ensure correct user input.
     * Scanner objects are created to check if values in args can be
     * parsed to int without incurring numberformatexception.
-    * @param args
-    * @return 
+    * @param args command line arguments passed by the user
+    * @return true if the arguments are valid, false if not
     */
    public static boolean isValid(String args[]){
       
@@ -96,8 +117,7 @@ public class SequenceDemo {
       
       for(i = 0; i < size; i++){
          primeArray[i] = prime.next();
-      }
-      
+      } 
       return primeArray;
       
    }
@@ -107,13 +127,14 @@ public class SequenceDemo {
     * using the generateSequence method.
     * Determines if a table will look square or irregular and calls the
     * appropriate method.
-    * @param primeArray 
+    * @param primeArray the prime number sequence
     */
    public static void generateTable(int primeArray[]){
       int size = primeArray.length;
       int root = (int)Math.sqrt(size);
 	   int square = root * root;
   
+      //if the table can be representd as a perfect square
 	   if(square == size){
          perfectSquareTable(root, primeArray);
       }
@@ -124,48 +145,41 @@ public class SequenceDemo {
    }
    
    /**
-    * Generates a table at looks like a square
-    * @param root
-    * @param primeArray 
+    * Generates a table at that looks as square as possible
+    * @param root the size used for the rows/columns of the table
+    * @param primeArray the prime number sequence
     */
    public static void perfectSquareTable(int root, int primeArray[]){
       
       int i, j;
-      int k =0;
-      int excess = 0;
-      
-      if(root > 10){
-         excess = root - 10;
-         root = 10;
-      }
-      for(i = 0; i < (root + excess); i++){
+      int k = 0; //used to keep track of the index of the sequence array
+ 
+      System.out.println("Prime Sequence Table\n");
+      for(i = 0; i < root; i++){
             System.out.println();
             for(j = 0; j < root; j++){
-               //System.out.print(primeArray[k] + " ");
-               System.out.format("%6d%1s", primeArray[k], " ");
-               
+               System.out.format("%6d%1s", primeArray[k], " ");           
                k++;
             }
-         }
-      
+         }     
    }
    
    /**
     * Generates a table that attempts to look as "square as possible"
-    * @param root
-    * @param remainder
+    * @param root the size used for the rows/columns of the table
+    * @param remainder 
     * @param primeArray 
     */
    public static void irregularTable(int root, int remainder, int primeArray[]){
       int i, j;
-      int k = 0;
-      int excess = 0;
+      int k = 0; //used to keep track of the index of the sequnce arrya
+      int excess = 0;  //number of elements in excess row to be printed
 	  
 	  if(root > 10){
          excess = root - 10;
          root = 10;
       }
-      
+      System.out.println("Prime Sequence Table\n");
       if(remainder > 10){
             for(i = 0; i < (remainder % 10); i++){
                System.out.format("%6d%1s", primeArray[i], " ");
@@ -175,7 +189,7 @@ public class SequenceDemo {
                for(j = 0; j < 10; j++){
                   System.out.format("%6d%1s", primeArray[k + remainder % 10],
                      " ");
-				  k++;
+                  k++;
                }
             }
          }
@@ -202,7 +216,7 @@ public class SequenceDemo {
    /**
     * Generates a histogram detailing the number of occurrences of the
     * last digit of each number in the prime sequence
-    * @param primeArray 
+    * @param primeArray the prime number sequence
     */
    public static void generateHistogram(int primeArray[]){
       int i, j;
@@ -210,30 +224,28 @@ public class SequenceDemo {
       
       int scale = determineScale(primeArray);
       
-      System.out.println("\nPrime Sequence Histogram");
+      System.out.println("\n\nPrime Sequence Histogram\n");
       for(i = 0; i < MAX_DIGIT; i++){
          System.out.format("%d%1s", i, " | ");
          for(j = 0; j < primeArray.length; j++){
-            if((primeArray[j] % MAX_DIGIT) == i){
-               occurrences++;
-            }           
+            if((primeArray[j] % MAX_DIGIT) == i)
+               occurrences++;          
          }
-         
-            for(j = 0; j < (occurrences / scale); j++)
-               System.out.format("%s", " * ");
-            occurrences = 0;
-        
-        
+         for(j = 0; j < (occurrences / scale); j++)
+            System.out.format("%-5s", "* ");
+         occurrences = 0;
          System.out.println();
       }
-      System.out.println("\nScale: * = " + scale);
+      System.out.print("   ___________________________________________\n    ");
+      for(i = 1; i < MAX_DIGIT; i++)
+         System.out.format("%-5d", (i * scale) );
        
    }
    
    /**
     * Determines the scale of the histogram
-    * @param primeArray
-    * @return 
+    * @param primeArray the prime number sequence
+    * @return the size of the scale to be used for the histogram
     */
    public static int determineScale(int primeArray[]){
       int i, j;
@@ -244,14 +256,11 @@ public class SequenceDemo {
             if((primeArray[j] % MAX_DIGIT) == i)
                occurrences++;
          }
-         if(occurrences > (scale *LOG_SCALE))
-            scale *= LOG_SCALE;
+         if(occurrences > (scale *DEFAULT_SCALE))
+            scale *= DEFAULT_SCALE;
          else
             occurrences = 0;
-      }
-      
+      } 
       return scale;
    }
-   
-   
 }

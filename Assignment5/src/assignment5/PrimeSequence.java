@@ -14,12 +14,16 @@
  |	______________________________________ [Signature]
  |  
  |      Language:  Java 
- |   Compile/Run:  
+ |   Compile/Run:  javac Sequence.java PrimeSequence.java SequenceDemo.java
+ |                 java SequenceDemo int x int y
+ |                 Where x is the number to start the prime sequence from
+ |                 and y is the number of prime numbers to output.
  |                 
  | 
  |  +-----------------------------------------------------------------------  
  |  
- |  Description:  
+ |  Description:  This class tests the functionality of the PrimeSequence
+ |                class
  |
  |        Input:  
  |  
