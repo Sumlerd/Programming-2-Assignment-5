@@ -34,4 +34,8 @@ isValid()
 generateSequence()
    retrieve the command line arguments
    generate the sequence and output the results as an array.
+
+generateTable()
+   creates a table from the prime sequence array that is as square as possible
+   outputs the table on the terminal
    

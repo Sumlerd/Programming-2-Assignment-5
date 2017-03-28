@@ -46,8 +46,9 @@ public class SequenceDemo {
       int i;
       if(isValid(args)){
          int size = Integer.parseInt(args[1]);
-         for(i = 0; i < size; i++)
-            System.out.println(generateSequence(args)[i]);
+         //for(i = 0; i < size; i++)
+           // System.out.println(generateSequence(args)[i]);
+		   generateTable(generateSequence(args));
       }  
    }
    
@@ -98,4 +99,50 @@ public class SequenceDemo {
       return primeArray;
       
    }
+   
+   /**
+    * Generates a table representation of the prime sequence array created
+    * using the generateSequence method.
+    * @param primeArray 
+    */
+   public static void generateTable(int primeArray[]){
+      int size = primeArray.length;
+      int root = (int)Math.round(Math.sqrt(size));
+	   int square = root * root;
+      
+      PrimeSequence prime = new PrimeSequence(size - 1);
+      
+	   int i, j;
+      int k = 0;
+	  
+	   if(square == size){
+         for(i = 0; i < square; i++){
+            System.out.println();
+            for(j = 0; j < square; j++){
+               System.out.print(primeArray[k] + " ");
+               k++;
+            }
+         }
+      }
+      else if(prime.next() == size){
+         int remainder = size - square;
+         for(i = 0; i < remainder; i++){
+            System.out.print(primeArray[i] + " ");
+         }
+         
+         k+= remainder;
+         for(i = 0; i < square; i++){
+            System.out.println();
+            for(j = 0; j < square; j++){
+               System.out.print(primeArray[k] + " ");
+               k++;
+            }
+         }
+      } 
+
+             
+   }
+   
+   
+   
 }
