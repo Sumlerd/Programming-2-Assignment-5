@@ -40,15 +40,17 @@ package assignment5;
 
 import java.util.Scanner; //for command line input validation
 
+
 public class SequenceDemo {
    
+   //1 + the max possible value for rightmost digit in a given number
+   private static final int MAX_DIGIT = 10; 
+   private static final int LOG_SCALE = 10;  //used to scale histogram
+   
    public static void main(String[] args){
-      int i;
       if(isValid(args)){
-         int size = Integer.parseInt(args[1]);
-         //for(i = 0; i < size; i++)
-           // System.out.println(generateSequence(args)[i]);
 		   generateTable(generateSequence(args));
+         generateHistogram(generateSequence(args));
       }  
    }
    
@@ -139,7 +141,9 @@ public class SequenceDemo {
       for(i = 0; i < (root + excess); i++){
             System.out.println();
             for(j = 0; j < root; j++){
-               System.out.print(primeArray[k] + " ");
+               //System.out.print(primeArray[k] + " ");
+               System.out.format("%6d%1s", primeArray[k], " ");
+               
                k++;
             }
          }
@@ -156,21 +160,28 @@ public class SequenceDemo {
       int i, j;
       int k = 0;
       int excess = 0;
+	  
+	  if(root > 10){
+         excess = root - 10;
+         root = 10;
+      }
       
       if(remainder > 10){
             for(i = 0; i < (remainder % 10); i++){
-               System.out.print(primeArray[i] + " ");
+               System.out.format("%6d%1s", primeArray[i], " ");
             }
             for(i = 0; i < (remainder/10); i++){
                System.out.println();
                for(j = 0; j < 10; j++){
-                  System.out.print(primeArray[j + (remainder % 10)] + " ");
+                  System.out.format("%6d%1s", primeArray[k + remainder % 10],
+                     " ");
+				  k++;
                }
             }
          }
 		   else{
             for(i = 0; i < remainder; i++){
-               System.out.print(primeArray[i] + " ");
+               System.out.format("%6d%1s", primeArray[i], " ");
             }
 		   }
 		 
@@ -182,9 +193,65 @@ public class SequenceDemo {
          for(i = 0; i < (root + excess); i++){
             System.out.println();
             for(j = 0; j < root; j++){
-               System.out.print(primeArray[k] + " ");
+               System.out.format("%6d%1s", primeArray[k], " ");
                k++;
             }
          }
-   }    
+   }
+   
+   /**
+    * Generates a histogram detailing the number of occurrences of the
+    * last digit of each number in the prime sequence
+    * @param primeArray 
+    */
+   public static void generateHistogram(int primeArray[]){
+      int i, j;
+      int occurrences = 0;
+      
+      int scale = determineScale(primeArray);
+      
+      System.out.println("\nPrime Sequence Histogram");
+      for(i = 0; i < MAX_DIGIT; i++){
+         System.out.format("%d%1s", i, " | ");
+         for(j = 0; j < primeArray.length; j++){
+            if((primeArray[j] % MAX_DIGIT) == i){
+               occurrences++;
+            }           
+         }
+         
+            for(j = 0; j < (occurrences / scale); j++)
+               System.out.format("%s", " * ");
+            occurrences = 0;
+        
+        
+         System.out.println();
+      }
+      System.out.println("\nScale: * = " + scale);
+       
+   }
+   
+   /**
+    * Determines the scale of the histogram
+    * @param primeArray
+    * @return 
+    */
+   public static int determineScale(int primeArray[]){
+      int i, j;
+      int scale = 1;
+      int occurrences = 0;
+      for(i = 0; i < MAX_DIGIT; i++){
+         for(j = 0; j < primeArray.length; j++){
+            if((primeArray[j] % MAX_DIGIT) == i)
+               occurrences++;
+         }
+         if(occurrences > (scale *LOG_SCALE))
+            scale *= LOG_SCALE;
+         else
+            occurrences = 0;
+      }
+      
+      return scale;
+   }
+   
+   
 }

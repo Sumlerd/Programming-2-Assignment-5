@@ -45,4 +45,13 @@ squareTable()
 
 irregularTable()
    prints a non-square looking table
+
+generateHistogram()
+   iterate through the array and find number of
+   occurrences of each possible final digit
+   
+   print out histogram based on scale
+
+determineScale()
+   determine the scale of the histogram
    
