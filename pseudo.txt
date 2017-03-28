@@ -20,3 +20,13 @@ setNumber()
 
 clearSequence()
    clear the current number of the sequence 
+
+
+SequenceDemo class
+
+main()
+   High level view of program operation
+
+isValid()
+   validate command line input.
+   Ensure that two integer arguments are provided and, if not, close the program.
