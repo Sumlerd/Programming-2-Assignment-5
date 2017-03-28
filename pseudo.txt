@@ -30,3 +30,8 @@ main()
 isValid()
    validate command line input.
    Ensure that two integer arguments are provided and, if not, close the program.
+
+generateSequence()
+   retrieve the command line arguments
+   generate the sequence and output the results as an array.
+   

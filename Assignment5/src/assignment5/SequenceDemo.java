@@ -43,14 +43,11 @@ import java.util.Scanner; //for command line input validation
 public class SequenceDemo {
    
    public static void main(String[] args){
-      
+      int i;
       if(isValid(args)){
          int size = Integer.parseInt(args[1]);
-         int i;
-         PrimeSequence prime = new PrimeSequence(Integer.parseInt(args[0]));
-         for(i = 0; i < size; i++){
-            System.out.println(prime.next()); 
-         }
+         for(i = 0; i < size; i++)
+            System.out.println(generateSequence(args)[i]);
       }  
    }
    
@@ -79,5 +76,26 @@ public class SequenceDemo {
       }
 	   else
          return true;
+   }
+   
+   /**
+    * Generates a sequence of prime numbers starting at the number
+    * provided by arguments[1] and totaling at the number provided by
+    * arguments[0].
+    * @param arguments the command line arguments provided by the user
+    * @return primeArray the prime number sequence.
+    */
+   public static int[] generateSequence(String arguments[]){
+      int size = Integer.parseInt(arguments[1]);
+      int i;
+      int primeArray[] = new int[size];
+      PrimeSequence prime = new PrimeSequence(Integer.parseInt(arguments[0]));
+      
+      for(i = 0; i < size; i++){
+         primeArray[i] = prime.next();
+      }
+      
+      return primeArray;
+      
    }
 }
