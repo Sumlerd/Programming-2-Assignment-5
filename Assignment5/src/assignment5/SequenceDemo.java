@@ -107,7 +107,7 @@ public class SequenceDemo {
     */
    public static void generateTable(int primeArray[]){
       int size = primeArray.length;
-      int root = (int)Math.round(Math.sqrt(size));
+      int root = (int)Math.sqrt(size);
 	   int square = root * root;
       
       PrimeSequence prime = new PrimeSequence(size - 1);
@@ -116,9 +116,9 @@ public class SequenceDemo {
       int k = 0;
 	  
 	   if(square == size){
-         for(i = 0; i < square; i++){
+         for(i = 0; i < root; i++){
             System.out.println();
-            for(j = 0; j < square; j++){
+            for(j = 0; j < root; j++){
                System.out.print(primeArray[k] + " ");
                k++;
             }
@@ -130,19 +130,18 @@ public class SequenceDemo {
             System.out.print(primeArray[i] + " ");
          }
          
-         k+= remainder;
-         for(i = 0; i < square; i++){
+         if(remainder == 1)
+            k++;
+         else
+            k+= remainder - 1;
+         for(i = 0; i < root; i++){
             System.out.println();
-            for(j = 0; j < square; j++){
+            for(j = 0; j < root; j++){
                System.out.print(primeArray[k] + " ");
                k++;
             }
          }
-      } 
-
-             
+      }              
    }
-   
-   
-   
+     
 }
