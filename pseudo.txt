@@ -37,5 +37,12 @@ generateSequence()
 
 generateTable()
    creates a table from the prime sequence array that is as square as possible
+   determines if the table to be generated will be square or irregular
    outputs the table on the terminal
+
+squareTable() 
+   prints a square looking table
+
+irregularTable()
+   prints a non-square looking table
    

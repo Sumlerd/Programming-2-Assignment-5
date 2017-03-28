@@ -103,38 +103,61 @@ public class SequenceDemo {
    /**
     * Generates a table representation of the prime sequence array created
     * using the generateSequence method.
+    * Determines if a table will look square or irregular and calls the
+    * appropriate method.
     * @param primeArray 
     */
    public static void generateTable(int primeArray[]){
       int size = primeArray.length;
       int root = (int)Math.sqrt(size);
 	   int square = root * root;
+  
+	   if(square == size){
+         perfectSquareTable(root, primeArray);
+      }
+      else{
+         int remainder = size - square;
+         irregularTable(root, remainder, primeArray);
+      }
+   }
+   
+   /**
+    * Generates a table at looks like a square
+    * @param root
+    * @param primeArray 
+    */
+   public static void perfectSquareTable(int root, int primeArray[]){
+      
+      int i, j;
+      int k =0;
       int excess = 0;
-      int excess2= 0;
-      
-      PrimeSequence prime = new PrimeSequence(size - 1);
-      
-	   int i, j;
-      int k = 0;
-      
       
       if(root > 10){
          excess = root - 10;
          root = 10;
       }
-      
-	   if(square == size){
-         for(i = 0; i < (root + excess); i++){
+      for(i = 0; i < (root + excess); i++){
             System.out.println();
             for(j = 0; j < root; j++){
                System.out.print(primeArray[k] + " ");
                k++;
             }
          }
-      }
-      else{
-         int remainder = size - square;
-         if(remainder > 10){
+      
+   }
+   
+   /**
+    * Generates a table that attempts to look as "square as possible"
+    * @param root
+    * @param remainder
+    * @param primeArray 
+    */
+   public static void irregularTable(int root, int remainder, int primeArray[]){
+      int i, j;
+      int k = 0;
+      int excess = 0;
+      
+      if(remainder > 10){
             for(i = 0; i < (remainder % 10); i++){
                System.out.print(primeArray[i] + " ");
             }
@@ -155,6 +178,7 @@ public class SequenceDemo {
             k++;
          else
             k+= remainder;
+         
          for(i = 0; i < (root + excess); i++){
             System.out.println();
             for(j = 0; j < root; j++){
@@ -162,7 +186,5 @@ public class SequenceDemo {
                k++;
             }
          }
-      }
-   }
-     
+   }    
 }
