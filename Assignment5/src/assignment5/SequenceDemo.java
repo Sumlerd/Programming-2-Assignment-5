@@ -35,7 +35,7 @@
  |  
  |       Output:  Will output a table representation of the generated prime
  |                sequence and a histogram representing the number of 
-                  occurrences the last digit in each prime number.
+ |                occurrences the last digit in each prime number.
  |  
  |      Process:  The program will execute four high-level methods in main
  |                which will validate user input, generate/print the 

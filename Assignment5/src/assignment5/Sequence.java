@@ -29,7 +29,8 @@
  |  
  |       Output:  No output will be generated.
  |  
- |      Process:  
+ |      Process:  Creates a next() method to be used by any class that
+ |                will inplement a unique sequence of integers
  |
  |                
  |  

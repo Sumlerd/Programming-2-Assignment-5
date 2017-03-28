@@ -1,3 +1,9 @@
+Sequence Class
+
+next()
+   provide template to be used by PrimeSequence
+
+____________________________________________________________________________________________________________
 PrimeSequence class
 
 PrimeSequence constructor
@@ -21,7 +27,7 @@ setNumber()
 clearSequence()
    clear the current number of the sequence 
 
-
+________________________________________________________________________________________________________
 SequenceDemo class
 
 main()
